@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Food_Shop.Models.Customers>
+
+@{
+    ViewData["Title"] = "รายการอาหาร";
+}
+<link rel="stylesheet" type="text/css" href="~/css/test.css" />
+<h2>ข้อมูลรายการอาหาร</h2>
+<form asp-controller="Customer" asp-action="Search" method="get">
+    @Html.TextBox("txtQ") <input type="submit" value="ค้นหา" />
+</form><br />
+
+<p>
+    <a asp-action="Create">เพิ่มอาหาร</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>รหัส</th>
+            <th>ชื่ออาหาร</th>
+            <th>ราคาอาหาร</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td><a asp-action="Detail" asp-route-id="@item.ID">รายละเอียด</a></td>
+                <td><a asp-action="Edit" asp-route-id="@item.ID">แก้ไขข้อมูล</a></td>
+                <td><a asp-action="Delete" asp-route-id="@item.ID">ลบ</a></td>
+                <td><a asp-action="Sale" asp-route-id="@item.ID">สั่งซื้อ</a></td>
+            </tr>
+
+        }
+    </tbody>
+
+</table>

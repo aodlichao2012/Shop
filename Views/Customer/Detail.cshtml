@@ -1,0 +1,15 @@
+﻿@model Food_Shop.Models.Customers
+
+@{
+    ViewData["Title"] = "รายละเอียดสินค้า";
+}
+
+<h2>รายละเอียดสินค้า</h2>
+<p>
+    รหัสสินค้า : @Model.ID <br />
+    ชื่ออาหาร : @Model.Name <br />
+    ราคาสินค้า : @Model.Price
+</p>
+<div>
+    <a asp-action="Index">กลับหน้ารายการสินค้า</a>
+</div>
