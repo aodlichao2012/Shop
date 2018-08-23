@@ -48,6 +48,30 @@ namespace Food_Shop.Controllers
             }
             return View(cs);
         }
+        public IActionResult Create()
+        {
+            ViewData["Price"] = new SelectList(db.Customers, "ID", "Price", "Name");
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Customers c)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Add(c);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(c);
+            }
+            ViewData["Price"] = new SelectList(db.Customers, "Price", "Name", c.ID);
+            return View(c);
+
+        }
 
     }
 }
